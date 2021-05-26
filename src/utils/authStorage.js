@@ -5,10 +5,16 @@ class AuthStorage {
     this.namespace = namespace;
   }
 
+  // async getAccessToken() {
+  //   const token = await AsyncStorage.getItem(`${this.namespace}:token`);
+  //   console.log('------> authStorage - token:', token);
+  //   return token ? JSON.parse(token) : '';
+  // }
+
   async getAccessToken() {
     const token = await AsyncStorage.getItem(`${this.namespace}:token`);
-    console.log('------> authStorage:', token);
-    return token ? JSON.parse(token) : '';
+
+    return token ? JSON.parse(token) : [];
   }
 
   async setAccessToken(accessToken) {
