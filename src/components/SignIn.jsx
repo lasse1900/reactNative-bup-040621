@@ -79,7 +79,8 @@ const SignIn = () => {
     const { username, password } = values;
     try {
       const { data } = await signIn({ username, password });
-      console.log(data);
+      console.log('SignIn ---> credentials:', username, password);
+      console.log('SignIn ---> token:', data);
     } catch (error) {
       console.log(error);
     }
