@@ -10,7 +10,7 @@ import AuthStorageContext from './src/contexts/AuthStorageContext';
 
 const authStorage = new AuthStorage();
 
-const apolloClient = createApolloClient();
+const apolloClient = createApolloClient(authStorage);
 
 const App = () => {
   // console.log(Constants.manifest);
