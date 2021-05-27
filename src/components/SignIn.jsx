@@ -74,16 +74,11 @@ const SignInForm = ({ onSubmit }) => {
 
 const SignIn = () => {
   const [signIn] = useSignIn();
-
+  console.log('---- SignIn ---');
   const onSubmit = async (values) => {
     const { username, password } = values;
-    try {
-      const { data } = await signIn({ username, password });
-      console.log('SignIn ---> credentials:', username, password);
-      console.log('SignIn ---> token:', data);
-    } catch (error) {
-      console.log(error);
-    }
+
+    await signIn({ username, password });
   };
 
   return (

@@ -2,7 +2,6 @@ import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import Constants from 'expo-constants';
 import { setContext } from '@apollo/client/link/context';
 
-console.log('--------> apolloUri', Constants.manifest.extra.apolloUri);
 const { apolloUri } = Constants.manifest.extra;
 
 const httpLink = createHttpLink({
