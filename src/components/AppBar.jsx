@@ -25,7 +25,7 @@ const AppBar = () => {
     fetchPolicy: "cache-and-network",
   });
 
- let authorizedUser = data ? data.authorizedUser : null;
+  let authorizedUser = data ? data.authorizedUser : null;
 
   console.log('authorizedUser', authorizedUser);
 
