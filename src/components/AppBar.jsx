@@ -4,6 +4,8 @@ import { Link } from 'react-router-native';
 import Constants from "expo-constants";
 import AppBarTab from './AppBarTab';
 import theme from "../theme";
+import { useQuery } from '@apollo/react-hooks';
+import { AUTHORIZED_USER } from '../graphql/queries';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,17 +20,27 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppBar = () => (
-  <View style={styles.container}>
-    <ScrollView horizontal style={styles.tabsContainer}>
-      <Link to='/' component={AppBarTab}>
-        Repositories
+const AppBar = () => {
+  const { data } = useQuery(AUTHORIZED_USER, {
+    fetchPolicy: "cache-and-network",
+  });
+
+ let authorizedUser = data ? data.authorizedUser : null;
+
+  console.log('authorizedUser', authorizedUser);
+
+  return (
+    <View style={styles.container}>
+      <ScrollView horizontal style={styles.tabsContainer}>
+        <Link to='/' component={AppBarTab}>
+          Repositories
       </Link>
-      <Link to='/signin' component={AppBarTab}>
-        Sign in
+        <Link to='/signin' component={AppBarTab}>
+          Sign in
       </Link>
-    </ScrollView>
-  </View>
-);
+      </ScrollView>
+    </View>
+  );
+};
 
 export default AppBar;
