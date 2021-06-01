@@ -11,7 +11,9 @@ const httpLink = createHttpLink({
 const createApolloClient = (authStorage) => {
   const authLink = setContext(async (_, { headers }) => {
     try {
+      console.log(' from ----> apolloClient');
       const accessToken = await authStorage.getAccessToken().then(console.log);
+      console.log(' from ----> apolloClient');
       // OBS ! comment: logging the token to console
       return {
         headers: {

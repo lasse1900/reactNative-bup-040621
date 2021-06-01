@@ -27,7 +27,7 @@ const AppBar = () => {
 
   let authorizedUser = data ? data.authorizedUser : null;
 
-  console.log('authorizedUser', authorizedUser);
+  console.log('form ---> AppBar - authorizedUser', authorizedUser);
 
   return (
     <View style={styles.container}>
