@@ -13,8 +13,8 @@ const styles = StyleSheet.create({
 const RepositoryList = () => {
   const { repositories } = useRepositories();
 
-  const repositoryNodes = repositories
-    ? repositories.edges.map(edge => edge.node)
+  const repositoryNodes = repositories.edges
+    ? repositories.edges.map((edge) => edge.node)
     : [];
 
   const ItemSeparator = () => <View style={styles.separator} />;
