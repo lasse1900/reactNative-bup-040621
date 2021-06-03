@@ -7,16 +7,21 @@ import theme from "../theme";
 import { useQuery } from '@apollo/react-hooks';
 import { AUTHORIZED_USER } from '../graphql/queries';
 
+import useSignOut from '../hooks/useSignOut';
+
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
-    flexDirection: 'row',
-    alignItems: "flex-end",
-    backgroundColor: theme.appBar.backgroundColor
+    padding: 12,
+    backgroundColor: '#24292e',
+    paddingBottom: 15,
+    paddingTop: 40,
   },
-  tabsContainer: {
-    display: 'flex',
-    flexDirection: 'row'
+  scrollView: {
+    marginHorizontal: 0,
+  },
+  text: {
+    color: 'white',
+    marginRight: 10,
   }
 });
 
@@ -26,21 +31,34 @@ const AppBar = () => {
   });
 
   let authorizedUser = data ? data.authorizedUser : null;
+  const signOut = useSignOut();
 
   console.log('from ---> AppBar - authorizedUser', authorizedUser);
 
+
   return (
     <View style={styles.container}>
-      <ScrollView horizontal style={styles.tabsContainer}>
-        <Link to='/' component={AppBarTab}>
-          Repositories
-      </Link>
-        <Link to='/signin' component={AppBarTab}>
-          Sign in
-      </Link>
+      <ScrollView style={styles.scrollView} horizontal >
+        <AppBarTab link='/' label='Repositories' />
+        {!authorizedUser && <AppBarTab link='/signIn' label='Sign in' />}
+        {authorizedUser && <AppBarTab label='Sign out' onPress={() => signOut()} />}
       </ScrollView>
     </View>
   );
 };
 
 export default AppBar;
+
+
+// return (
+//   <View style={styles.container}>
+//     <ScrollView horizontal style={styles.tabsContainer}>
+//       <Link to='/' component={AppBarTab}>Repositories</Link>
+//       <Link to='/signin' component={AppBarTab}>Sign in</Link>
+//       <Link to='/signout' component={AppBarTab}>Sign out</Link>
+//     </ScrollView>
+//   </View>
+// );
+// };
+
+// export default AppBar;
